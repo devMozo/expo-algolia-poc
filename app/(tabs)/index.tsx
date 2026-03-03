@@ -4,6 +4,13 @@ import { StyleSheet } from 'react-native';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { InstantSearch } from "react-instantsearch-core";
+import { ALGOLIA_INDEX_NAME } from '@/constants/algolia';
+import { ALGOLIA_SEARCH_API_KEY } from '@/constants/algolia';
+import { ALGOLIA_APP_ID } from '@/constants/algolia';
+import { algoliasearch } from 'algoliasearch';
+
+const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_API_KEY);
 
 export default function HomeScreen() {
   return (
@@ -19,7 +26,9 @@ export default function HomeScreen() {
         <ThemedText type="title">Welcome to the Algolia POC!</ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-
+        <InstantSearch searchClient={searchClient} indexName={ALGOLIA_INDEX_NAME}>
+          <ThemedText type="subtitle">InstantSearch example</ThemedText>
+        </InstantSearch>
       </ThemedView>
     </ParallaxScrollView>
   );
