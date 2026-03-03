@@ -10,10 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mozooscar.ExpoAlgoliaPOC"
+      "bundleIdentifier": "com.mozo.ExpoAlgoliaPOC"
     },
     "android": {
-      "package": "com.mozooscar.ExpoAlgoliaPOC",
+      "package": "com.mozo.ExpoAlgoliaPOC",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
