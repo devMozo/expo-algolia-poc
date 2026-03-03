@@ -1,50 +1,48 @@
-# Welcome to your Expo app 👋
+# React InstantSearch + Expo SDK 54 — “constructor is not callable” (reproduction)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This repo is a minimal reproduction for a runtime error when using **React InstantSearch** in an **Expo SDK 54** app.
+
+## The error
+
+We’re using React InstantSearch (`react-instantsearch-core` v7.26.0, `instantsearch.js` 4.90.0) in an Expo SDK 54 app (React Native 0.81.5, Hermes). After upgrading to the latest Expo SDK version we hit a runtime error when rendering `<InstantSearch>`:
+
+```
+Error: TypeError: constructor is not callable
+Location: Inside useInstantSearchApi when it runs new InstantSearch(props)
+```
+
+The core `InstantSearch` class from `instantsearch.js` is not callable as a constructor at runtime.
+
+## Purpose of this repo
+
+- Reproduce the error in a minimal Expo 54 + React InstantSearch setup.
+- Help answer:
+  1. **Recommended setup for Expo SDK 54 with React InstantSearch** — e.g. Metro resolver settings, or preferring CJS vs ESM builds.
+  2. **Compatibility notes** for React InstantSearch with Expo 54 / Reanimated 4 / react-native-worklets.
 
 ## Get started
 
-1. Install dependencies
+1. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Start the app:
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. Run on iOS or Android (e.g. press `i` or `a` in the terminal, or use a development build). The error should occur when the screen that renders `<InstantSearch>` is shown.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Tech stack (for reproduction)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- **Expo SDK 54** (React Native 0.81.5, Hermes)
+- **React InstantSearch**: `react-instantsearch-core` v7.26.0, `instantsearch.js` 4.90.0
+- File-based routing via Expo Router; the relevant screen is under the **app** directory
 
 ## Learn more
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- [Expo documentation](https://docs.expo.dev/)
+- [React InstantSearch](https://www.algolia.com/doc/guides/building-search-ui/what-is-instantsearch/react/)
